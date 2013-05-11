@@ -1,0 +1,90 @@
+package Kirakira;
+use strict;
+use warnings;
+use utf8;
+use lib 'lib';
+
+use Kirakira::DB;
+use Digest::MD5;
+use Encode qw/ _utf8_on _utf8_off /;
+
+use constant {
+    KIRAKIRA_TABLE =>{
+        0 => '☆',
+        1 => '¨',
+        2 => '∵',
+        3 => '*',
+        4 => '゜',
+        5 => 'o',
+        6 => '∮',
+        7 => '+',
+        8 => '★',
+        9 => '｡',
+        a => ':',
+        b => 'ﾟ',
+        c => '♪',
+        d => 'о',
+        e => '.',
+        f => '・',
+    },
+};
+
+sub encode {
+    my $class = shift;
+    my $word = shift;
+
+    Encode::_utf8_off($word);
+    my $hash_hex = Digest::MD5->md5_hex($word);
+
+    Kirakira::DB->insert({
+        hash => $hash_hex,
+        word => $word,
+    });
+
+    my $kirakira = $class->hash2kirakira($hash_hex);
+
+    return $kirakira;
+}
+
+sub decode {
+    my $class = shift;
+    my $kirakira = shift;
+
+    my $hash_hex = $class->kirakira2hash(
+        $kirakira
+    );
+
+    my $word = Kirakira::DB->select_word({
+        hash => $hash_hex,
+    });
+    Encode::_utf8_on($word);
+    return $word;
+}
+
+sub hash2kirakira {
+    my $class = shift;
+    my $hash = shift;
+
+    my $kirakira = $hash;
+    for( keys KIRAKIRA_TABLE()){
+        my $kira = KIRAKIRA_TABLE()->{$_};
+        $kirakira =~ s/$_/$kira/g;
+    }
+
+    return $kirakira;
+}
+
+sub kirakira2hash {
+    my $class = shift;
+    my $kirakira = shift;
+
+    my $hash = $kirakira;
+    for( keys KIRAKIRA_TABLE()){
+        my $kira = quotemeta(KIRAKIRA_TABLE()->{$_});
+        $hash =~ s/$kira/$_/g;
+    }
+
+    return $hash;
+}
+
+1;
