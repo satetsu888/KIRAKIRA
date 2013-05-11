@@ -58,7 +58,7 @@ sub decode {
         hash => $hash_hex,
     });
     Encode::_utf8_on($word);
-    return $word;
+    return $word || '変換できなかったよ(´･ω･`)';
 }
 
 sub hash2kirakira {

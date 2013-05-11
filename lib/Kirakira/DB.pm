@@ -31,8 +31,9 @@ sub select_word {
     my $sth = $db->prepare($sql);
     $sth->execute(@bind);
 
-    return $sth->fetchrow_hashref()->{word};
-
+    my $row = $sth->fetchrow_hashref();
+    return '' unless $row;
+    return $row->{word};
 };
 
 sub _db {
