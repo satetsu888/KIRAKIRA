@@ -4,7 +4,32 @@ use utf8;
 use lib 'lib';
 
 use Mojolicious::Lite;
+use MojoX::JSON::RPC::Service;
 use Kirakira;
+
+my $svc = MojoX::JSON::RPC::Service->new;
+
+$svc->register(
+    'encode',
+    sub {
+        my $params = shift;
+        return Kirakira->encode($params->{word});
+    },
+);
+
+$svc->register(
+    'decode',
+    sub {
+        my $params = shift;
+        return Kirakira->decode($params->{kirakira});
+    },
+);
+
+plugin 'json_rpc_dispatcher' => {
+    services => {
+        '/jsonrpc' => $svc,
+    }
+};
 
 get '/' => sub {
     my $self = shift;
