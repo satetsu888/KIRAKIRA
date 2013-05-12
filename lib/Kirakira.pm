@@ -27,11 +27,12 @@ use constant {
         e => '.',
         f => '・',
     },
+    MAX_WORD_LENGTH => 400,
 };
 
 sub encode {
     my $class = shift;
-    my $word = shift;
+    my $word = substr(shift, 0, MAX_WORD_LENGTH);
 
     Encode::_utf8_off($word);
     my $hash_hex = Digest::MD5->md5_hex($word);
