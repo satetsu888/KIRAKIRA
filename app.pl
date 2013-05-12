@@ -43,6 +43,14 @@ get '/' => sub {
     $self->render();
 } => 'index';
 
+get '/encode' => sub {
+    shift->redirect_to('/');
+};
+
+get '/decode' => sub {
+    shift->redirect_to('/');
+};
+
 post '/encode' => sub {
     my $self = shift;
     my $mode = 'encode';
