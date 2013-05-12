@@ -61,6 +61,8 @@ post '/decode' => sub {
     my $self = shift;
     my $mode = 'decode';
     my $kirakira = $self->param('kirakira');
+    use Data::Dumper;
+    warn Dumper $kirakira;
     my $word = Kirakira->decode($kirakira);
 
     $self->stash(
@@ -75,20 +77,49 @@ app->start;
 
 __DATA__
 @@ index.html.ep
+
+<!DOCTYPE html> 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>KIRAKIRA暗号</title>
-</head>
-<body>
-<form action='./encode' method="POST">
-    <textarea name="word" style="width:500px;height:100px" placeholder="暗号化したいメッセージを入力してください"><%= $word %></textarea>
-    <input type="submit" value="変換">
-</form>
+<meta charset="utf-8">
+<title>キラキラ暗号</title>
+<link href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
+<script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+</head> 
+<body> 
 
-<form action='./decode' method="POST">
-    <textarea name="kirakira" style="width:500px;height:25px;" placeholder="日本語に変換したい記号を入力してください"><%= $kirakira %></textarea>
-    <input type="submit" value="変換">
-</form>
+<div data-role="page" id="page">
+<div data-role="header">
+		<h1>キラキラ暗号</h1>
+	</div>
+	<div data-role="content">
+    <p>キラキラ暗号は日本語の文章をキラキラした記号へと暗号化するサービスです</p>
+    <p>たとえば、「こんにちわ」は「☆.・∮・｡o・｡゜оﾟ∵*+★∮・☆*☆ﾟ¨+∮*о∵∵゜ﾟﾟ」のように変換されます
+    <div class="ui-grid-a">
+    <form method="POST" action="./encode">
+      <div class="ui-block-a">
+      
+        <textarea cols="40" rows="8" name="word" placeholder="暗号化したい文章をいれてね"><%= $word %></textarea>
+      </div>
+      <div class="ui-block-b">
+        <input type="submit" value="暗号化する" data-icon="arrow-d" />
+      </div>
+      </form>
+      <form method="POST" action="./decode">
+      <div class="ui-block-a">
+        <textarea cols="40" rows="8" name="kirakira" placeholder="暗号を解きたい記号を入れてね"><%= $kirakira %></textarea>
+      </div>
+      <div class="ui-block-b">
+        <input type="submit" value="暗号を解く" data-icon="arrow-u" />
+      </div>
+      </form>
+    </div>
+<div data-role="fieldcontain">
+
+<div data-role="footer">
+    <h6></h6>
+	</div>
+</div>
 </body>
 </html>
