@@ -129,6 +129,8 @@ function CopyText(arg){
 		<img src="http://satetsu888.com/kirakira/logo.png" width="225" height="79">
 	</div>
 	<div data-role="content">
+<a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-hashtags="kirakira">ツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         <p>キラキラ暗号は日本語の文章をキラキラした記号へと暗号化するサービスです。<br>たとえば、「こんにちわ」は「☆.・∮・｡o・｡゜оﾟ∵*+★∮・☆*☆ﾟ¨+∮*о∵∵゜ﾟﾟ」のように変換されます。<br>暗号はこのサイトでだけ解くことができます。</p>
 	  <div class="ui-grid-a">
         <form method="POST" action="./encode">
