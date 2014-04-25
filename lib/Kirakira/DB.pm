@@ -25,7 +25,13 @@ sub insert {
 sub select_word {
     my ($class, $param) = @_;
 
-    my($sql, @bind) = SQL::Abstract->new()->select(TABLE, 'word', $param);
+    my($sql, @bind) = SQL::Abstract->new()->select(
+        TABLE,
+        'word',
+        +{
+            hash => +{ -like => "$param->{hash}%" }
+        }
+    );
 
     my $db = $class->_db();
     my $sth = $db->prepare($sql);
