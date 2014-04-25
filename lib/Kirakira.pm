@@ -28,6 +28,7 @@ use constant {
         f => '・',
     },
     MAX_WORD_LENGTH => 400,
+    KIRAKIRA_LENGTH => 12,
 };
 
 sub encode {
@@ -72,7 +73,7 @@ sub hash2kirakira {
         $kirakira =~ s/$_/$kira/g;
     }
 
-    return $kirakira;
+    return substr($kirakira, 0, KIRAKIRA_LENGTH);
 }
 
 sub kirakira2hash {
