@@ -69,8 +69,6 @@ post '/decode' => sub {
     my $self = shift;
     my $mode = 'decode';
     my $kirakira = $self->param('kirakira');
-    use Data::Dumper;
-    warn Dumper $kirakira;
     my $word = Kirakira->decode($kirakira);
 
     $self->stash(
@@ -81,7 +79,9 @@ post '/decode' => sub {
     $self->render();
 } => 'index';
 
+
 app->start;
+
 
 __DATA__
 @@ index.html.ep
@@ -122,7 +122,7 @@ function CopyText(arg){
 //-->
 </script>
 </head> 
-<body> 
+<body>
 
 <div data-role="page" id="page" data-theme="c">
 	<div data-role="header" align="center">
