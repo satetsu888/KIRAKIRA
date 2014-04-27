@@ -28,7 +28,7 @@ use constant {
         f => '・',
     },
     MAX_WORD_LENGTH => 400,
-    KIRAKIRA_LENGTH => 12,
+    KIRAKIRA_LENGTH => 16,
 };
 
 sub encode {
