@@ -28,7 +28,9 @@ use constant {
         f => '・',
     },
     MAX_WORD_LENGTH => 400,
+    MINIMUN_KIRAKIRA_LENGTH => 12,
     KIRAKIRA_LENGTH => 16,
+    ERROR_MESSAGE   => '変換できなかったよ(´･ω･`)',
 };
 
 sub encode {
@@ -56,11 +58,13 @@ sub decode {
         $kirakira
     );
 
+    return ERROR_MESSAGE if length $kirakira < MINIMUN_KIRAKIRA_LENGTH;
+
     my $word = Kirakira::DB->select_word({
         hash => $hash_hex,
     });
     Encode::_utf8_on($word);
-    return $word || '変換できなかったよ(´･ω･`)';
+    return $word || ERROR_MESSAGE;
 }
 
 sub hash2kirakira {
