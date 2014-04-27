@@ -5,6 +5,8 @@ use warnings;
 use DBI;
 use SQL::Abstract;
 
+use Kirakira::Config;
+
 use constant {
     DB_SOURCE => 'DBI:mysql:kirakira',
     USER      => 'kirakira',
@@ -43,7 +45,8 @@ sub select_word {
 };
 
 sub _db {
-    return DBI->connect(DB_SOURCE, USER, PASS) || die $DBI::errstr;
+    my $config = Kirakira::Config->new;
+    return DBI->connect($config->dbi()) || die $DBI::errstr;
 }
 
 1;
