@@ -44,6 +44,22 @@ sub select_word {
     return $row->{word};
 };
 
+sub delete_create_at_until {
+    my ($class, $param) = @_;
+    my($sql, @bind) = SQL::Abstract->new()->delete(
+        TABLE,
+        {
+            create_at => {'<', $param->{until}},
+        }
+    );
+
+    my $db = $class->_db();
+    warn $sql;
+    my $sth = $db->prepare($sql);
+    return $sth->execute(@bind);
+
+}
+
 sub _db {
     my $config = Kirakira::Config->new;
     return DBI->connect($config->dbi()) || die $DBI::errstr;
