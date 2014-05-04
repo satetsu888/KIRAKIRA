@@ -128,9 +128,22 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-50183657-2', 'kirakira-ango.com');
-ga('send', 'pageview');
-
 </script>
+<script>
+/**
+* Google アナリティクスでアウトバウンド リンクのクリックをトラッキングする関数。
+* この関数では有効な URL 文字列を引数として受け取り、その URL 文字列を
+* イベントのラベルとして使用する。
+*/
+var trackOutboundLink = function(url) {
+    ga('send', 'event', 'outbound', 'click', url, {'hitCallback':
+        function () {
+            document.location = url;
+        }
+    });
+}
+</script>
+
 </head> 
 <body>
 
@@ -142,6 +155,10 @@ ga('send', 'pageview');
 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://kirakira-ango.com/" data-lang="ja" data-related="kirakira_ango" data-hashtags="kirakira">ツイート</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         <p>キラキラ暗号は日本語の文章をキラキラした記号へと暗号化するサービスです。<br>たとえば、「こんにちわ」は「☆.・∮・｡o・｡゜оﾟ∵*+★∮・☆*☆ﾟ¨+∮*о∵∵゜ﾟﾟ」のように変換されます。<br>暗号はこのサイトでだけ解くことができます。</p>
+    <p>
+        iPhoneアプリもよろしくね
+        <a href="#" onclick="trackOutboundLink('https://itunes.apple.com/jp/app/kirakira-an-hao/id869763054?mt=8&uo=4'); return false;" target="itunes_store" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/ja_jp//images/web/linkmaker/badge_appstore-lrg.png) no-repeat;width:135px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/ja_jp//images/web/linkmaker/badge_appstore-lrg.svg);}"></a>
+    </p>
 	  <div class="ui-grid-a">
         <form method="POST" action="./encode">
 	    <div class="ui-block">
