@@ -5,7 +5,6 @@ use warnings;
 use parent 'Class::Accessor::Fast';
 
 use YAML::XS;
-use Data::Dumper;
 
 use constant {
     CONFIG_FILE_PATH => 'config.yaml',
@@ -18,6 +17,9 @@ use constant {
         DB_PASS   => '',
         DB_NAME   => 'kirakira',
         DB_TABLE  => 'kirakira_map',
+
+        CACHE_HOST => 'localhost',
+        CACHE_PORT => '11211',
     },
 };
 
@@ -28,6 +30,8 @@ my @configs = qw/
     db_pass
     db_name
     db_table
+    cache_host
+    cache_port
 /;
 
 __PACKAGE__->mk_accessors( @configs );
@@ -63,6 +67,12 @@ sub dbi {
     my $source = "DBI:$self->{db_type}:$self->{db_name}:$self->{db_host}:$self->{db_pass}";
 
     return ($source, $self->{db_user}, $self->{db_pass});
+}
+
+sub cache {
+    my $self = shift;
+
+    return "$self->{cache_host}:$self->{cache_port}";
 }
 
 
