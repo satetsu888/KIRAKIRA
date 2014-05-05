@@ -9,6 +9,12 @@ use Kirakira;
 
 my $svc = MojoX::JSON::RPC::Service->new;
 
+sub init {
+    my $self = shift;
+
+    $ENV{'REMOTE_ADDR'} = $self->req->headers->header('X-Forwarded-For');
+}
+
 $svc->register(
     'encode',
     sub {
@@ -34,6 +40,7 @@ plugin 'json_rpc_dispatcher' => {
 get '/' => sub {
     my $self = shift;
     my $mode = 'default';
+    init($self);
 
     $self->stash(
         'word'     => '',
@@ -54,6 +61,7 @@ get '/decode' => sub {
 post '/encode' => sub {
     my $self = shift;
     my $mode = 'encode';
+    init($self);
     my $word = $self->param('word');
     my $kirakira = Kirakira->encode($word);
 
@@ -68,6 +76,7 @@ post '/encode' => sub {
 post '/decode' => sub {
     my $self = shift;
     my $mode = 'decode';
+    init($self);
     my $kirakira = $self->param('kirakira');
     my $word = Kirakira->decode($kirakira);
 
