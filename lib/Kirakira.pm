@@ -5,6 +5,7 @@ use utf8;
 use lib 'lib';
 
 use Kirakira::DB;
+use Kirakira::Throttle;
 use Digest::MD5;
 use Encode qw/ _utf8_on _utf8_off /;
 
@@ -31,11 +32,15 @@ use constant {
     MINIMUN_KIRAKIRA_LENGTH => 12,
     KIRAKIRA_LENGTH => 16,
     ERROR_MESSAGE   => '変換できなかったよ(´･ω･`)',
+    RESTRICTED_MESSAGE => '連投制限だよ(´･ω･`)',
 };
 
 sub encode {
     my $class = shift;
     my $word = substr(shift, 0, MAX_WORD_LENGTH);
+
+    my $throttle = Kirakira::Throttle->new();
+    return RESTRICTED_MESSAGE if $throttle->is_restricted();
 
     Encode::_utf8_off($word);
     my $hash_hex = Digest::MD5->md5_hex($word);
@@ -47,12 +52,16 @@ sub encode {
 
     my $kirakira = $class->hash2kirakira($hash_hex);
 
+    $throttle->call();
     return $kirakira;
 }
 
 sub decode {
     my $class = shift;
     my $kirakira = shift;
+
+    my $throttle = Kirakira::Throttle->new();
+    return RESTRICTED_MESSAGE if $throttle->is_restricted();
 
     my $hash_hex = $class->kirakira2hash(
         $kirakira
@@ -64,6 +73,7 @@ sub decode {
         hash => $hash_hex,
     });
     Encode::_utf8_on($word);
+    $throttle->call();
     return $word || ERROR_MESSAGE;
 }
 
