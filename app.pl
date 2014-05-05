@@ -18,16 +18,26 @@ sub init {
 $svc->register(
     'encode',
     sub {
+        my $tx = shift;
+        init($tx);
         my $params = shift;
         return Kirakira->encode($params->{word});
+    },
+    {
+        with_mojo_tx => 1,
     },
 );
 
 $svc->register(
     'decode',
     sub {
+        my $tx = shift;
+        init($tx);
         my $params = shift;
         return Kirakira->decode($params->{kirakira});
+    },
+    {
+        with_mojo_tx => 1,
     },
 );
 
