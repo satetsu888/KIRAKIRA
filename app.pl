@@ -68,6 +68,10 @@ get '/decode' => sub {
     shift->redirect_to('/');
 };
 
+get '/logo' => sub {
+    shift->render_static("logo.png");
+};
+
 post '/encode' => sub {
     my $self = shift;
     my $mode = 'encode';
@@ -169,7 +173,7 @@ var trackOutboundLink = function(url) {
 
 <div data-role="page" id="page" data-theme="c">
 	<div data-role="header" align="center">
-		<img src="http://satetsu888.com/kirakira/logo.png" width="225" height="79">
+		<img src="http://kirakira-ango.com/logo" width="225" height="79">
 	</div>
 	<div data-role="content">
 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://kirakira-ango.com/" data-lang="ja" data-related="kirakira_ango" data-hashtags="kirakira">ツイート</a>
