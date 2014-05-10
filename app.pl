@@ -72,6 +72,10 @@ get '/logo' => sub {
     shift->render_static("logo.png");
 };
 
+get '/apple-touch-icon.png' => sub {
+    shift->render_static("icon.png");
+};
+
 post '/encode' => sub {
     my $self = shift;
     my $mode = 'encode';
