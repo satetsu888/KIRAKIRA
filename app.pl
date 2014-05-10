@@ -203,10 +203,6 @@ var trackOutboundLink = function(url) {
             <input type="text" name="kirakira" value="<%= $kirakira %>" placeholder="暗号を解きたい記号をいれてね"/>
         </div>
         <div class="ui-block">
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://kirakira-ango.com/" data-text="<%= $kirakira %>" data-lang="ja" data-size="large" data-related="kirakira_ango" data-count="none" data-hashtags="kirakira">キラキラをツイートする</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        </div>
-        <div class="ui-block">
             <input type="button" name="Copy" value="全選択.:*゜:。:." onClick="CopyText('kirakira');">
         </div>
         <div class="ui-block">
