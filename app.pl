@@ -60,6 +60,12 @@ get '/' => sub {
     $self->render();
 } => 'index';
 
+get '/help' => sub {
+    my $self = shift;
+
+    $self->render();
+} => 'help';
+
 get '/encode' => sub {
     shift->redirect_to('/');
 };
@@ -222,6 +228,86 @@ var trackOutboundLink = function(url) {
 	<div data-role="footer">
 		<h4></h4>
 	</div>
+</div>
+</body>
+</html>
+
+@@ help.html.ep
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,  initial-scale=1">
+<title>*:.。.:*゜キラキラ暗号 ヘルプ゜*:.。.:*</title>
+<link href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+h1 {
+    font-size: x-large;
+}
+h2 {
+    font-size: large;
+}
+#page div .ui-grid-a .ui-block p {
+    font-size: small;
+}
+</style>
+<script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).bind("mobileinit", function(){
+    $.mobile.ajaxFormsEnabled = false;
+    $.mobile.ajaxEnabled = false;
+  });
+</script>
+<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50183657-2', 'kirakira-ango.com');
+ga('send', 'pageview');
+</script>
+</head>
+<body>
+
+<div data-role="page" id="page" data-theme="c">
+<div data-role="header" align="center">
+<img src="http://kirakira-ango.com/logo" width="225" height="79">
+</div>
+<div data-role="content">
+    <h1>ヘルプ</h1>
+    <div class="ui-grid-a">
+        <div class="ui-block">
+            <h2>☆キラキラ暗号とは！？☆</h2>
+            <p>
+                キラキラ暗号は
+            </p>
+        </div>
+        <div class="ui-block">
+            <h2>☆使い方☆</h2>
+            キラキラ暗号は
+        </div>
+        <div class="ui-block">
+            <h2>☆何に使うの！？☆</h2>
+            キラキラ暗号は
+        </div>
+        <div class="ui-block">
+            <h2>☆お金はかかるの？☆</h2>
+            キラキラ暗号は
+        </div>
+        <div class="ui-block">
+            <h2>☆動かないときは☆</h2>
+            キラキラ暗号は
+        </div>
+    </div>
+    <p>
+        <a href="./">さっそくキラキラ暗号を使ってみる★←</a>
+    </p>
+</div>
+<div data-role="footer">
+    <h4></h4>
+</div>
 </div>
 </body>
 </html>
