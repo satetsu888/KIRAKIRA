@@ -128,13 +128,13 @@ __DATA__
 <link href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css"/>
 <style type="text/css">
 #page div .ui-grid-a ul li {
-	font-size: xx-small;
+    font-size: xx-small;
 }
 #page div .ui-grid-a h6 {
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 #page div .ui-grid-a ul {
-	margin-top: 5px;
+    margin-top: 5px;
 }
 </style>
 <script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
@@ -149,7 +149,7 @@ __DATA__
 function CopyText(arg){
     var obj=document.getElementsByName(arg)[0];
     obj.selectionStart=0;
-	obj.selectionEnd=obj.value.length;
+    obj.selectionEnd=obj.value.length;
     document.execCommand("copy");
 }
 //-->
@@ -182,10 +182,13 @@ var trackOutboundLink = function(url) {
 <body>
 
 <div data-role="page" id="page" data-theme="c">
-	<div data-role="header" align="center">
-		<img src="http://kirakira-ango.com/logo" width="225" height="79">
-	</div>
-	<div data-role="content">
+    <div data-role="header" align="center">
+        <img src="http://kirakira-ango.com/logo" width="225" height="79" onClick="document.location='./'">
+        <a href="./help" data-icon="info" class="ui-btn-right">
+            Help
+        </a>
+    </div>
+    <div data-role="content">
 <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://kirakira-ango.com/" data-lang="ja" data-related="kirakira_ango" data-hashtags="kirakira">ツイート</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         <p>キラキラ暗号は日本語の文章をキラキラした記号へと暗号化するサービスです。<br>たとえば、「こんにちわ」は「☆.・∮・｡o・｡゜оﾟ∵*+★∮・☆*☆ﾟ¨+∮*о∵∵゜ﾟﾟ」のように変換されます。<br>暗号はこのサイトでだけ解くことができます。</p>
@@ -193,19 +196,19 @@ var trackOutboundLink = function(url) {
         iPhoneアプリもよろしくね
         <a href="#" onclick="trackOutboundLink('https://itunes.apple.com/jp/app/kirakira-an-hao/id869763054?mt=8&uo=4'); return false;" target="itunes_store" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/htmlResources/assets/ja_jp//images/web/linkmaker/badge_appstore-lrg.png) no-repeat;width:135px;height:40px;@media only screen{background-image:url(https://linkmaker.itunes.apple.com/htmlResources/assets/ja_jp//images/web/linkmaker/badge_appstore-lrg.svg);}"></a>
     </p>
-	  <div class="ui-grid-a">
+      <div class="ui-grid-a">
         <form method="POST" action="./encode">
-	    <div class="ui-block">
+        <div class="ui-block">
           <input type="text" name="word" value="<%= $word %>" placeholder="暗号化したい文章をいれてね" />
         </div>
-	    <div class="ui-block">
-	      <input type="submit" value="暗号化する.｡.*:+☆" data-icon="check" />
+        <div class="ui-block">
+          <input type="submit" value="暗号化する.｡.*:+☆" data-icon="check" />
         </div>
         </form>
       </div>
       <div class="ui-grid-a">
         <form method="POST" action="./decode">
-	      <div class="ui-block">
+          <div class="ui-block">
             <input type="text" name="kirakira" value="<%= $kirakira %>" placeholder="暗号を解きたい記号をいれてね"/>
         </div>
         <div class="ui-block">
@@ -225,9 +228,9 @@ var trackOutboundLink = function(url) {
         </ul>
       </div>
     </div>
-	<div data-role="footer">
-		<h4></h4>
-	</div>
+    <div data-role="footer">
+        <h4></h4>
+    </div>
 </div>
 </body>
 </html>
@@ -272,9 +275,12 @@ ga('send', 'pageview');
 <body>
 
 <div data-role="page" id="page" data-theme="c">
-<div data-role="header" align="center">
-<img src="http://kirakira-ango.com/logo" width="225" height="79">
-</div>
+    <div data-role="header" align="center">
+        <img src="http://kirakira-ango.com/logo" width="225" height="79" onClick="document.location='./'">
+        <a href="./help" data-icon="info" class="ui-btn-right">
+            Help
+        </a>
+    </div>
 <div data-role="content">
     <h1>ヘルプ</h1>
     <div class="ui-grid-a">
@@ -313,12 +319,6 @@ ga('send', 'pageview');
                     </ol>
                 </dt>
             </dl>
-            </p>
-        </div>
-        <div class="ui-block">
-            <h2>☆何に使うの！？☆</h2>
-            <p>
-                キラキラ暗号は
             </p>
         </div>
         <div class="ui-block">
