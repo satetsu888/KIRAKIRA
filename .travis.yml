@@ -1,0 +1,14 @@
+language: perl
+perl:
+ - 5.10
+services:
+  - memcached
+before_script:
+  - mysql -e 'create database kirakira;'
+  - mysql -u root <db-schema/setup_user.sql
+  - mysql -u root <db-schema/kirakira.sql
+script: prove -r t
+notifications:
+  email: false
+  irc: "chat.freenode.net#satetsu888"
+

@@ -23,7 +23,7 @@ subtest is_restricted => sub {
         10,
     );
 
-    is($throttle->is_ristricted(), 1);
+    is($throttle->is_restricted(), 1);
 };
 
 subtest call => sub {
@@ -32,17 +32,17 @@ subtest call => sub {
     $throttle->ip($dummy_ip);
 
     $throttle->call();
-    is($throttle->is_ristricted(), 0);
+    is($throttle->is_restricted(), 0);
     $throttle->call();
-    is($throttle->is_ristricted(), 0);
+    is($throttle->is_restricted(), 0);
     $throttle->call();
-    is($throttle->is_ristricted(), 0);
+    is($throttle->is_restricted(), 0);
     $throttle->call();
-    is($throttle->is_ristricted(), 0);
+    is($throttle->is_restricted(), 0);
     $throttle->call();
-    is($throttle->is_ristricted(), 0);
+    is($throttle->is_restricted(), 0);
     $throttle->call();
-    is($throttle->is_ristricted(), 1, 'get restricted call 6th time in short duration');
+    is($throttle->is_restricted(), 1, 'get restricted call 6th time in short duration');
 
 };
 
