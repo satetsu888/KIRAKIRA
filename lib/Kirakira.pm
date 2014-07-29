@@ -63,8 +63,11 @@ sub decode {
     my $throttle = Kirakira::Throttle->new();
     return RESTRICTED_MESSAGE if $throttle->is_restricted();
 
+    my @kirakira_allowed_word = values %{KIRAKIRA_TABLE()};
+    my $cleaned_kirakira = s/^[@kirakira_allowed_word]//g;
+
     my $hash_hex = $class->kirakira2hash(
-        $kirakira
+        $cleaned_kirakira
     );
 
     return ERROR_MESSAGE if length $kirakira < MINIMUN_KIRAKIRA_LENGTH;
