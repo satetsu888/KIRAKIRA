@@ -75,11 +75,11 @@ get '/decode' => sub {
 };
 
 get '/logo' => sub {
-    shift->render_static("logo.png");
+    shift->helpers->reply->static("logo.png");
 };
 
 get '/apple-touch-icon.png' => sub {
-    shift->render_static("icon.png");
+    shift->helpers->reply->static("icon.png");
 };
 
 post '/encode' => sub {
