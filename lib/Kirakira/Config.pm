@@ -26,6 +26,7 @@ use constant {
 my @configs = qw/
     db_type
     db_host
+    db_port
     db_user
     db_pass
     db_name
@@ -64,7 +65,7 @@ sub load {
 sub dbi {
     my $self = shift;
 
-    my $source = "DBI:$self->{db_type}:$self->{db_name}:$self->{db_host}:$self->{db_pass}";
+    my $source = "DBI:$self->{db_type}:$self->{db_name}:$self->{db_host}:port=$self->{db_port}:$self->{db_pass}";
 
     return ($source, $self->{db_user}, $self->{db_pass});
 }
